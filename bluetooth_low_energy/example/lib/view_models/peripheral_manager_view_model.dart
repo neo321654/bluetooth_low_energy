@@ -16,7 +16,7 @@ class PeripheralManagerViewModel extends ViewModel {
   late final StreamSubscription _characteristicReadRequestedSubscription;
   late final StreamSubscription _characteristicWriteRequestedSubscription;
   late final StreamSubscription _characteristicNotifyStateChangedSubscription;
-  late final Stream streamWriteValues;
+  // late final Stream streamWriteValues;
 
   PeripheralManagerViewModel()
       : _manager = PeripheralManager()..logLevel = Level.INFO,
@@ -35,7 +35,7 @@ class PeripheralManagerViewModel extends ViewModel {
       }
       notifyListeners();
     });
-    streamWriteValues =  _manager.characteristicWriteRequested;
+    // streamWriteValues =  _manager.characteristicWriteRequested;
     _characteristicReadRequestedSubscription =
         _manager.characteristicReadRequested.listen((eventArgs) async {
       final central = eventArgs.central;
@@ -67,6 +67,7 @@ class PeripheralManagerViewModel extends ViewModel {
         type: 'Characteristic write requested11',
         message:
             '${String.fromCharCodes(value)}',
+            // '[${String.fromCharCodes(value)}]',
             // '[${value.length}] ${central.uuid}, ${characteristic.uuid}, $offset, $value = ${String.fromCharCodes(value)}',
       );
       _logs.add(log);

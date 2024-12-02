@@ -61,6 +61,10 @@ class PeripheralManagerViewMy extends StatelessWidget {
 
 
       final logs = viewModel.logs;
+      String lllog = '';
+      if(logs.isNotEmpty){
+        lllog = logs.last.message.toString();
+      }
       return Column(
         children: [
           Text('dfdfa'),
@@ -70,7 +74,7 @@ class PeripheralManagerViewMy extends StatelessWidget {
           //     return Text(String.fromCharCodes(snapshot.data.request.value));
           //   }),
           // ),
-          Text(logs.last.message.toString()),
+          Text(lllog),
           // Expanded(
           //   child: ListView.builder(
           //     padding: const EdgeInsets.all(16.0),
