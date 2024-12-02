@@ -16,11 +16,18 @@ class PeripheralManagerViewModel extends ViewModel {
   late final StreamSubscription _characteristicReadRequestedSubscription;
   late final StreamSubscription _characteristicWriteRequestedSubscription;
   late final StreamSubscription _characteristicNotifyStateChangedSubscription;
+  late final Stream streamWriteValues;
 
   PeripheralManagerViewModel()
       : _manager = PeripheralManager()..logLevel = Level.INFO,
+
+
         _logs = [],
         _advertising = false {
+
+
+
+
     _stateChangedSubscription = _manager.stateChanged.listen((eventArgs) async {
       if (eventArgs.state == BluetoothLowEnergyState.unauthorized &&
           Platform.isAndroid) {
@@ -28,6 +35,7 @@ class PeripheralManagerViewModel extends ViewModel {
       }
       notifyListeners();
     });
+    streamWriteValues =  _manager.characteristicWriteRequested;
     _characteristicReadRequestedSubscription =
         _manager.characteristicReadRequested.listen((eventArgs) async {
       final central = eventArgs.central;
@@ -56,9 +64,10 @@ class PeripheralManagerViewModel extends ViewModel {
       final offset = request.offset;
       final value = request.value;
       final log = Log(
-        type: 'Characteristic write requested',
+        type: 'Characteristic write requested11',
         message:
-            '[${value.length}] ${central.uuid}, ${characteristic.uuid}, $offset, $value',
+            '${String.fromCharCodes(value)}',
+            // '[${value.length}] ${central.uuid}, ${characteristic.uuid}, $offset, $value = ${String.fromCharCodes(value)}',
       );
       _logs.add(log);
       notifyListeners();

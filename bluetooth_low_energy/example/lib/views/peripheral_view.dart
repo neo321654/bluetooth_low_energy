@@ -23,7 +23,7 @@ class PeripheralView extends StatelessWidget {
     final serviceViewModels = viewModel.serviceViewModels;
     return Scaffold(
       appBar: AppBar(
-        title: Text(viewModel.name ?? '${viewModel.uuid}'),
+        title: Text("${viewModel.name} !!! " ?? '${viewModel.uuid} !!!'),
         actions: [
           TextButton(
             onPressed: () async {

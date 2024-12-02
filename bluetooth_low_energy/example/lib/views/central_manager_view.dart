@@ -77,7 +77,9 @@ class CentralManagerView extends StatelessWidget {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Text('${discovery.advertisement?.name}'),
                 RSSIIndicator(rssi),
+
                 Text('$rssi'),
               ],
             ),

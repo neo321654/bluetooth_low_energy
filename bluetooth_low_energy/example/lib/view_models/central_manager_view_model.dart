@@ -14,7 +14,7 @@ class CentralManagerViewModel extends ViewModel {
   late final StreamSubscription _discoveredSubscription;
 
   CentralManagerViewModel()
-      : _manager = CentralManager()..logLevel = Level.INFO,
+      : _manager = CentralManager()..logLevel = Level.ALL,
         _discoveries = [],
         _discovering = false {
     _stateChangedSubscription = _manager.stateChanged.listen((eventArgs) async {

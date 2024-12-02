@@ -65,6 +65,10 @@ class _HomeViewState extends State<HomeView> {
             icon: Icon(Icons.sensors),
             label: 'Peripheral',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.play_arrow),
+            label: 'Start',
+          ),
         ],
         currentIndex: widget.navigationShell.currentIndex,
       ),

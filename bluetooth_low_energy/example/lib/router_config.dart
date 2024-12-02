@@ -1,4 +1,5 @@
 import 'package:bluetooth_low_energy/bluetooth_low_energy.dart';
+import 'package:bluetooth_low_energy_example/views/play_game_view.dart';
 import 'package:clover/clover.dart';
 import 'package:collection/collection.dart';
 import 'package:go_router/go_router.dart';
@@ -73,6 +74,19 @@ final routerConfig = GoRouter(
               builder: (context, state) {
                 return ViewModelBinding(
                   viewBuilder: (context) => const PeripheralManagerView(),
+                  viewModelBuilder: (context) => PeripheralManagerViewModel(),
+                );
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/playScreen',
+              builder: (context, state) {
+                return ViewModelBinding(
+                  viewBuilder: (context) => const PeripheralManagerViewMy(),
                   viewModelBuilder: (context) => PeripheralManagerViewModel(),
                 );
               },

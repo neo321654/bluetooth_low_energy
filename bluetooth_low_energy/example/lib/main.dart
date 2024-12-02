@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routerConfig: routerConfig,
       theme: ThemeData.light().copyWith(
         materialTapTargetSize: MaterialTapTargetSize.padded,

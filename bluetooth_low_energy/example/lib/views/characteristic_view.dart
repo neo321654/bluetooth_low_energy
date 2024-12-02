@@ -38,6 +38,7 @@ class _CharacteristicViewState extends State<CharacteristicView> {
                 maxHeight: constraints.maxHeight + 1.0,
                 child: Row(
                   children: [
+                   Text("${viewModel.canWrite}"),
                     Expanded(
                       child: InputDecorator(
                         decoration: InputDecoration(
