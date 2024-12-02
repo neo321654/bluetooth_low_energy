@@ -57,6 +57,12 @@ class PeripheralManagerView extends StatelessWidget {
       );
     } else if (state == BluetoothLowEnergyState.poweredOn) {
       final logs = viewModel.logs;
+
+      String lllog = '';
+      if(logs.isNotEmpty){
+        lllog =logs.last.message.toString();
+      }
+      return Text('$lllog');
       return ListView.builder(
         padding: const EdgeInsets.all(16.0),
         itemBuilder: (context, i) {

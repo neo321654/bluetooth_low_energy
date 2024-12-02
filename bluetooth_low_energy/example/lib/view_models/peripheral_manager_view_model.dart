@@ -49,7 +49,8 @@ class PeripheralManagerViewModel extends ViewModel {
       _logs.add(log);
       notifyListeners();
       final elements = List.generate(100, (i) => i % 256);
-      final value = Uint8List.fromList(elements);
+      // final value = Uint8List.fromList(elements);
+      final value = Uint8List.fromList([DateTime.now().millisecondsSinceEpoch]);
       final trimmedValue = value.sublist(offset);
       await _manager.respondReadRequestWithValue(
         request,
@@ -64,7 +65,7 @@ class PeripheralManagerViewModel extends ViewModel {
       final offset = request.offset;
       final value = request.value;
       final log = Log(
-        type: 'Characteristic write requested11',
+        type: 'Characteristic write requested',
         message:
             '${String.fromCharCodes(value)}',
             // '[${String.fromCharCodes(value)}]',
@@ -114,7 +115,8 @@ class PeripheralManagerViewModel extends ViewModel {
     }
     await _manager.removeAllServices();
     final elements = List.generate(100, (i) => i % 256);
-    final value = Uint8List.fromList(elements);
+    // final value = Uint8List.fromList(elements);
+    final value = Uint8List.fromList([12, 13, 14]);
     final service = GATTService(
       uuid: UUID.short(100),
       isPrimary: true,
