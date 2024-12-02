@@ -34,7 +34,15 @@ class PeripheralManagerView extends StatelessWidget {
           ),
         ],
       ),
-      body: buildBody(context),
+      body: Column(
+        children: [
+
+          MaterialButton(onPressed: (){
+            viewModel.setNewValue();
+          },child: Text('new value'),),
+          buildBody(context),
+        ],
+      ),
       floatingActionButton: state == BluetoothLowEnergyState.poweredOn
           ? FloatingActionButton(
               onPressed: () => viewModel.clearLogs(),

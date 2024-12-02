@@ -12,6 +12,8 @@ class PeripheralManagerViewModel extends ViewModel {
   final List<Log> _logs;
   bool _advertising;
 
+  int answerValue = 22;
+
   late final StreamSubscription _stateChangedSubscription;
   late final StreamSubscription _characteristicReadRequestedSubscription;
   late final StreamSubscription _characteristicWriteRequestedSubscription;
@@ -50,7 +52,8 @@ class PeripheralManagerViewModel extends ViewModel {
       notifyListeners();
       final elements = List.generate(100, (i) => i % 256);
       // final value = Uint8List.fromList(elements);
-      final value = Uint8List.fromList([DateTime.now().millisecondsSinceEpoch]);
+      // final value = Uint8List.fromList([DateTime.now().millisecondsSinceEpoch]);
+      final value = Uint8List.fromList([answerValue]);
       final trimmedValue = value.sublist(offset);
       await _manager.respondReadRequestWithValue(
         request,
@@ -116,7 +119,7 @@ class PeripheralManagerViewModel extends ViewModel {
     await _manager.removeAllServices();
     final elements = List.generate(100, (i) => i % 256);
     // final value = Uint8List.fromList(elements);
-    final value = Uint8List.fromList([12, 13, 14]);
+    final value = Uint8List.fromList([answerValue]);
     final service = GATTService(
       uuid: UUID.short(100),
       isPrimary: true,
@@ -167,6 +170,16 @@ class PeripheralManagerViewModel extends ViewModel {
     }
     await _manager.stopAdvertising();
     _advertising = false;
+    notifyListeners();
+  }
+
+  Future<void> setNewValue() async {
+    if (!_advertising) {
+      return;
+    }
+    // await _manager.stopAdvertising();
+    // _advertising = false;
+    answerValue++;
     notifyListeners();
   }
 
